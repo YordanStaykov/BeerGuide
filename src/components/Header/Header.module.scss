@@ -1,0 +1,34 @@
+.header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: black;
+    display: flex;
+    justify-content: space-between;
+
+    img {
+        width: 80px;
+        height: 80px;
+        margin: 10px;
+    }
+
+    ul {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        li {
+            list-style-type: none;
+
+            :hover {
+                color: greenyellow;
+            }
+        }
+
+        a {
+            color: wheat;
+            text-decoration: none;
+            padding: 10px;
+        }
+    }
+}
