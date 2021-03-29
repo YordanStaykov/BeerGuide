@@ -1,13 +1,8 @@
 import styleCss from './RecipeCard.module.scss';
 import { Link } from 'react-router-dom'
 
-const Recipe = ({
-    boilTime,
-    hops,
-    malt,
-    method,
+const RecipeCard = ({
     style,
-    yeast,
     _id,
     imageURL,
     name
@@ -23,4 +18,4 @@ const Recipe = ({
     );
 };
 
-export default Recipe;
+export default RecipeCard;

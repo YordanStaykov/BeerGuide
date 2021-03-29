@@ -4,6 +4,10 @@ import Login from './Login/Login'
 import Register from './Register/Register'
 import Footer from './Footer/Footer'
 import Recipes from './Recipes/Recipes'
+import RecipeAddForm from './Recipes/RecipeAddForm/RecipeAddForm'
+import RecipeDetails from './Recipes/RecipeDetails/RecipeDetails'
+import RecipeEdit from './Recipes/RecipeEdit/RecipeEdit'
+
 import { Route, Switch, useHistory } from 'react-router-dom'
 import { logoutUser } from '../services/user'
 
@@ -23,6 +27,9 @@ function App() {
             history.push('/')
           }} />
           <Route path="/recipes" exact component={Recipes} />
+          <Route path="/recipes/add" component={RecipeAddForm} />
+          <Route path="/recipes/:id/details" component={RecipeDetails} />
+          <Route path="/recipes/:id/edit" component={RecipeEdit} />
         </Switch>
       </div>
       <Footer />

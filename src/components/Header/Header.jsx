@@ -10,6 +10,9 @@ const Header = () => {
                     <Link to="/recipes">Recipes</Link>
                 </li>
                 <li>
+                    <Link to="/recipes/add">Add Recipe</Link>
+                </li>
+                <li>
                     <Link to="/my-recipes">My Recipes</Link>
                 </li>
                 <li>
