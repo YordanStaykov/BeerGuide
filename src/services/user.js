@@ -52,7 +52,7 @@ export async function loginUser(e, setError, history) {
     }
 };
 
-export async function logOut() {
+export async function logoutUser() {
     auth.signOut()
         .then(() => {
             clearUserData();

@@ -40,10 +40,12 @@ hr {
     cursor: pointer;
     width: 100%;
     opacity: 0.9;
-}
 
-.registerbtn:hover {
-    opacity: 1;
+    &:hover {
+        background-color: wheat;
+        color: black;
+        opacity: 1;
+    }
 }
 
 /* Add a blue text color to links */

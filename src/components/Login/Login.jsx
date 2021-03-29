@@ -2,7 +2,7 @@ import style from './Login.module.scss'
 
 import { useState } from 'react';
 
-import { loginUser } from '../../controllers/user';
+import { loginUser } from '../../services/user';
 
 const Login = ({
     history

@@ -3,7 +3,7 @@ import style from './Register.module.scss';
 import { Link } from 'react-router-dom'
 import { useState } from 'react';
 
-import { registerUser } from '../../controllers/user'
+import { registerUser } from '../../services/user'
 
 const Register = ({
     history

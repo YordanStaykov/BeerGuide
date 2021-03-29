@@ -23,11 +23,12 @@ button {
     border: none;
     cursor: pointer;
     width: 100%;
-}
 
-/* Add a hover effect for buttons */
-button:hover {
-    opacity: 0.8;
+    &:hover {
+        opacity: 1;
+        background-color: wheat;
+        color: black;
+    }
 }
 
 /* Extra style for the cancel button (red) */

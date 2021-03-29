@@ -1,0 +1,22 @@
+.addedRecipe {
+    color: black;
+    cursor: pointer;
+    width: 400px;
+    border: 2px solid black;
+    text-align: center;
+    background: wheat;
+    padding: 10px;
+    border-radius: 10px;
+    margin-left: 20px;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    height: 300px;
+    flex-basis: 25%;
+    text-decoration: none;
+}
+
+.pictureAddedRecipe {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+}
