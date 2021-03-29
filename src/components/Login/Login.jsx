@@ -1,6 +1,41 @@
-const Login = (props) => {
+import style from './Login.module.scss'
+
+import { useState } from 'react';
+
+import { loginUser } from '../../controllers/user';
+
+const Login = ({
+    history
+}) => {
+    const [error, setError] = useState('');
+
+    function onLoginSubmitHandler(e) {
+        e.preventDefault();
+
+        loginUser(e, setError, history)
+    }
+
     return (
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis architecto fugiat officiis incidunt optio cupiditate, a nam neque vero non eligendi obcaecati ipsa unde. Veniam sequi iusto possimus harum praesentium impedit illo mollitia laudantium libero. Ab modi earum quidem, doloribus molestias, molestiae nihil pariatur officiis sed eaque vitae, ipsa deserunt quia debitis? Explicabo fuga necessitatibus enim quam ut molestiae reiciendis velit aperiam! Nesciunt voluptatem hic quibusdam itaque? Porro aspernatur eligendi explicabo dolorem pariatur soluta id, blanditiis neque doloribus rerum asperiores, deserunt nam! Dolorum corrupti voluptatem sint sed odio fugit id ipsa debitis nisi impedit, architecto iste autem beatae dolores perspiciatis.</p>
+        <>
+            <span className={style.errorBox} >
+                {error ? error : ''}
+            </span>
+            <form onSubmit={onLoginSubmitHandler}>
+                <div className={style.container}>
+                    <h1>Login</h1>
+                    <p>Please fill in this form to login to your account.</p>
+                    <hr />
+                    <label htmlFor="email"><b>Email</b></label>
+                    <input type="text" placeholder="Enter Username" name="email" required />
+
+                    <label htmlFor="password"><b>Password</b></label>
+                    <input type="password" placeholder="Enter Password" name="password" required />
+
+                    <hr />
+                    <button type="submit">Login</button>
+                </div>
+            </form>
+        </>
     );
 };
 

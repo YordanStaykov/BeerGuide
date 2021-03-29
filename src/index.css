@@ -10,5 +10,23 @@
 }
 
 .container {
-    margin: 110px 0 75px 0;
+    min-height: 100vh;
+    padding: 110px 0 75px 0;
+    position: relative;
+}
+
+.container::before {
+    content: " ";
+    display: block;
+    position: absolute;
+    z-index: -1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.3;
+    background-image: url("https://assets.newatlas.com/dims4/default/c0fb391/2147483647/strip/true/crop/1591x1061+0+10/resize/1200x800!/quality/90/?url=http%3A%2F%2Fnewatlas-brightspot.s3.amazonaws.com%2Farchive%2Fancient-beer-2.jpg");
+    background-repeat: no-repeat;
+    background-position: 50% 0;
+    background-size: cover;
 }
