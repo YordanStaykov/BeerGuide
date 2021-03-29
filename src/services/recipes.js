@@ -1,11 +1,11 @@
 import { get, post, del, patch } from '../data';
 import { objectToArray } from '../util';
+import config from '../config/config'
 
-const URL = 'https://beer-receipt-builder-default-rtdb.firebaseio.com/';
 
 
 export async function getAll() {
-    let data = await get(URL + 'recipes.json');
+    let data = await get(config.URL + 'recipes.json');
 
     return objectToArray(data);
 };
@@ -19,13 +19,13 @@ export async function getOne(id) {
 };
 
 export async function deleteOne(id) {
-    await del(URL + 'recipes/' + id + '.json');
+    await del(config.URL + 'recipes/' + id + '.json');
 }
 
 export async function create(data) {
-    await post(URL + 'recipes.json', data);
+    await post(config.URL + 'recipes.json', data);
 }
 
 export async function edit(id, data) {
-    await patch(URL + 'recipes/' + id + '.json', data)
+    await patch(config.URL + 'recipes/' + id + '.json', data)
 }

@@ -31,9 +31,9 @@ const RecipeAddForm = ({ history }) => {
     }
 
 
+    //TODO Validations!!!!!
     return (
         <>
-            //TODO Validations!!!!!
             {/* <span className={style.errorBox}>
                 {error ? error : ''}
             </span> */}

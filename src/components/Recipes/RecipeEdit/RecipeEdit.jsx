@@ -46,9 +46,8 @@ const RecipeEdit = ({
     }
 
 
+    //TODO Validations!!!!!
     return (
-        //TODO Validations!!!!!
-
         < form onSubmit={submitHandler} >
             <div className={style.container}>
                 <h1>Edit the recipe</h1>
