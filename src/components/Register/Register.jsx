@@ -1,24 +1,49 @@
 import style from './Register.module.scss';
 
 import { Link } from 'react-router-dom'
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 
-import { registerUser } from '../../services/user'
+import { UserContext } from '../../contexts/UserContext'
+
+import { auth } from '../../config/firebase'
 
 const Register = ({
     history
 }) => {
     const [error, setError] = useState('');
+    const [user, setUser] = useContext(UserContext)
 
-    function submitHandler(e) {
-
+    function onRegisterSubmitHandler(e) {
         e.preventDefault()
 
-        registerUser(e, setError, history)
+        const email = e.target.email.value;
+        const password = e.target.password.value;
+        const repeatPassword = e.target.repeatPassword.value;
+
+        if (password !== repeatPassword) {
+            setError('Passwords should match!');
+            e.target.password.value = ''
+            e.target.repeatPassword.value = '';
+            return;
+        }
+
+        auth.createUserWithEmailAndPassword(email, password)
+            .then(userData => {
+                const { user: { email, uid } } = userData;
+                sessionStorage.setItem('user', JSON.stringify({ email, uid }));
+                setUser({ email, uid })
+                history.push('/')
+            })
+            .catch(err => {
+                setError(err.message)
+                e.target.email.value = ''
+                e.target.password.value = ''
+                e.target.repeatPassword.value = '';
+            });
     }
 
     return (
-        < form onSubmit={submitHandler} >
+        < form onSubmit={onRegisterSubmitHandler} >
             <div className={style.container}>
                 <span className={style.errorBox}>
                     {error ? error : ''}

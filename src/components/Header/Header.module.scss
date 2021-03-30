@@ -7,6 +7,11 @@
     display: flex;
     justify-content: space-between;
 
+    div {
+        display: flex;
+        align-items: center;
+    }
+
     img {
         width: 80px;
         height: 80px;
@@ -32,4 +37,8 @@
             padding: 10px;
         }
     }
+}
+
+.userSpan {
+    color: wheat;
 }

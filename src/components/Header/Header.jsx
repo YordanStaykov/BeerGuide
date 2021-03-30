@@ -1,30 +1,51 @@
 import style from './Header.module.scss';
-import { Link } from 'react-router-dom';
-const Header = () => {
 
+import { Link } from 'react-router-dom';
+
+import { useContext } from 'react'
+import { UserContext } from '../../contexts/UserContext';
+
+
+const Header = () => {
+    const [user] = useContext(UserContext)
     return (
         <header className={style.header}>
-            <Link to="/"><img src="/images/beer-mug.svg" alt="Beer club logo" /></Link>
+            <div>
+                <Link to="/"><img src="/images/beer-mug.svg" alt="Beer club logo" /></Link>
+                {user ? (<span className={style.userSpan}>Hello {user.email}</span>) : null}
+            </div>
             <ul >
-                <li>
-                    <Link to="/recipes">Recipes</Link>
-                </li>
-                <li>
-                    <Link to="/recipes/add">Add Recipe</Link>
-                </li>
-                <li>
-                    <Link to="/my-recipes">My Recipes</Link>
-                </li>
-                <li>
-                    <Link to="/auth/login">Login</Link>
-                </li>
-                <li>
-                    <Link to="/auth/register">Register</Link>
-                </li>
-
-                <li>
-                    <Link to="/auth/logout">Logout</Link>
-                </li>
+                {user ?
+                    (
+                        <>
+                            <li>
+                                <Link to="/recipes">Recipes</Link>
+                            </li>
+                            <li>
+                                <Link to="/recipes/add">Add Recipe</Link>
+                            </li>
+                            <li>
+                                <Link to="/my-recipes">My Recipes</Link>
+                            </li>
+                            <li>
+                                <Link to="/auth/logout">Logout</Link>
+                            </li>
+                        </>
+                    ) :
+                    (
+                        <>
+                            <li>
+                                <Link to="/recipes">Recipes</Link>
+                            </li>
+                            <li>
+                                <Link to="/auth/login">Login</Link>
+                            </li>
+                            <li>
+                                <Link to="/auth/register">Register</Link>
+                            </li>
+                        </>
+                    )
+                }
             </ul>
         </header>
     );

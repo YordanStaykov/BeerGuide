@@ -1,13 +1,14 @@
 import { get, post, del, patch } from '../data';
-import { objectToArray } from '../util';
 import config from '../config/config'
-
-
 
 export async function getAll() {
     let data = await get(config.URL + 'recipes.json');
 
-    return objectToArray(data);
+    if (data === null) {
+        return [];
+    } else {
+        return Object.entries(data).map(([key, value]) => Object.assign({ _id: key }, value));
+    };
 };
 
 export async function getOne(id) {

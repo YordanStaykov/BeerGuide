@@ -1,6 +1,6 @@
 import style from './Main.module.scss';
 
-const Main = (props) => {
+const Main = () => {
 
     return (
         <main className={style.main}>

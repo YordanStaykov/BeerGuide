@@ -1,18 +1,36 @@
 import style from './Login.module.scss'
 
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 
-import { loginUser } from '../../services/user';
+import { auth } from '../../config/firebase'
+
+import { UserContext } from '../../contexts/UserContext'
 
 const Login = ({
     history
 }) => {
     const [error, setError] = useState('');
+    const [user, setUser] = useContext(UserContext)
+
 
     function onLoginSubmitHandler(e) {
         e.preventDefault();
 
-        loginUser(e, setError, history)
+        const email = e.target.email.value;
+        const password = e.target.password.value;
+
+        auth.signInWithEmailAndPassword(email, password)
+            .then(userData => {
+                const { user: { email, uid } } = userData;
+                sessionStorage.setItem('user', JSON.stringify({ email, uid }));
+                setUser({ email, uid })
+                history.push('/')
+            })
+            .catch(err => {
+                setError(err.message)
+                e.target.email.value = ''
+                e.target.password.value = ''
+            });
     }
 
     return (
