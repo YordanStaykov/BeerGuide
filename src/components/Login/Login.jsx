@@ -18,7 +18,7 @@ const Login = ({
 
         auth.signInWithEmailAndPassword(email, password)
             .then(() => {
-                history.push('/')
+                history.push('/recipes')
             })
             .catch(err => {
                 setError(err.message)

@@ -18,14 +18,18 @@ const Recipes = () => {
         <section>
             <div className={style.addedRecipes}>
                 {
-                    recipes.map(({
-                        style,
-                        _id,
-                        imageURL,
-                        name,
-                    }) => {
-                        return <RecipeCard key={_id} _id={_id} style={style} imageURL={imageURL} name={name} />
-                    })
+                    recipes.length > 0 ?
+                        (
+                            (recipes.map(({
+                                style,
+                                _id,
+                                imageURL,
+                                name,
+                            }) => {
+                                return <RecipeCard key={_id} _id={_id} style={style} imageURL={imageURL} name={name} />
+                            }))
+                        )
+                        : <h1>No recipes to show at the moment. Feel free to add one :)</h1>
                 }
             </div>
 

@@ -27,7 +27,7 @@ const Register = ({
 
         auth.createUserWithEmailAndPassword(email, password)
             .then(() => {
-                history.push('/')
+                history.push('/recipes')
             })
             .catch(err => {
                 setError(err.message)
