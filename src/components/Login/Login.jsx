@@ -4,14 +4,11 @@ import { useState, useContext } from 'react';
 
 import { auth } from '../../config/firebase'
 
-import { UserContext } from '../../contexts/UserContext'
 
 const Login = ({
     history
 }) => {
     const [error, setError] = useState('');
-    const [user, setUser] = useContext(UserContext)
-
 
     function onLoginSubmitHandler(e) {
         e.preventDefault();
@@ -20,10 +17,7 @@ const Login = ({
         const password = e.target.password.value;
 
         auth.signInWithEmailAndPassword(email, password)
-            .then(userData => {
-                const { user: { email, uid } } = userData;
-                sessionStorage.setItem('user', JSON.stringify({ email, uid }));
-                setUser({ email, uid })
+            .then(() => {
                 history.push('/')
             })
             .catch(err => {

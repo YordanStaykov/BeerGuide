@@ -8,6 +8,7 @@ import { UserContext } from '../../contexts/UserContext';
 
 const Header = () => {
     const [user] = useContext(UserContext)
+
     return (
         <header className={style.header}>
             <div>

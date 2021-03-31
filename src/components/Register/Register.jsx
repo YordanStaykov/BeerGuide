@@ -1,9 +1,8 @@
 import style from './Register.module.scss';
 
 import { Link } from 'react-router-dom'
-import { useState, useContext } from 'react';
+import { useState } from 'react';
 
-import { UserContext } from '../../contexts/UserContext'
 
 import { auth } from '../../config/firebase'
 
@@ -11,7 +10,6 @@ const Register = ({
     history
 }) => {
     const [error, setError] = useState('');
-    const [user, setUser] = useContext(UserContext)
 
     function onRegisterSubmitHandler(e) {
         e.preventDefault()
@@ -28,10 +26,7 @@ const Register = ({
         }
 
         auth.createUserWithEmailAndPassword(email, password)
-            .then(userData => {
-                const { user: { email, uid } } = userData;
-                sessionStorage.setItem('user', JSON.stringify({ email, uid }));
-                setUser({ email, uid })
+            .then(() => {
                 history.push('/')
             })
             .catch(err => {
