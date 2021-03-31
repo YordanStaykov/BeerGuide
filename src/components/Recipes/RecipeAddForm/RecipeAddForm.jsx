@@ -2,7 +2,20 @@ import style from './RecipeAddForm.module.scss'
 
 import * as recipesService from '../../../services/recipes'
 
+import { useContext, useEffect } from 'react';
+
+import { UserContext } from '../../../contexts/UserContext'
+
 const RecipeAddForm = ({ history }) => {
+    const [user] = useContext(UserContext);
+
+    useEffect(() => {
+        if (!user) {
+            console.log('!user');
+            return history.push('/')
+        }
+    }, [])
+
     function submitHandler(e) {
         e.preventDefault();
 
@@ -14,6 +27,7 @@ const RecipeAddForm = ({ history }) => {
         const hops = e.target.hops.value;
         const yeast = e.target.yeast.value;
         const preparation = e.target.preparation.value;
+        const creator = user.uid;
 
         const recipe = {
             name,
@@ -24,6 +38,7 @@ const RecipeAddForm = ({ history }) => {
             hops,
             yeast,
             preparation,
+            creator,
         }
 
         recipesService.create(recipe)

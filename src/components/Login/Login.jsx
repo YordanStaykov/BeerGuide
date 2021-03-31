@@ -31,6 +31,7 @@ const Login = ({
                 e.target.email.value = ''
                 e.target.password.value = ''
             });
+
     }
 
     return (

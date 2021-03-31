@@ -4,19 +4,37 @@ import style from './RecipeDetails.module.scss';
 
 import * as recipesService from "../../../services/recipes";
 
+import { useContext } from 'react';
+
+import { UserContext } from '../../../contexts/UserContext'
+
+// import Rating from 'react-rating'
 
 const RecipeDetails = ({
     match,
     history,
 }) => {
+    // const [rating, setRating] = useState(0)
     const [recipe, setRecipe] = useState({});
+    const [isMine, setIsMine] = useState(false);
+    const [user] = useContext(UserContext);
 
-    let { id } = match.params
+    let { id } = match.params;
 
     useEffect(() => {
         recipesService.getOne(id)
-            .then(recipe => setRecipe(recipe))
+            .then(recipe => {
+                setRecipe(recipe)
+                if (user && recipe.creator === user.uid) {
+                    setIsMine(true)
+                }
+            });
     }, [])
+
+    // useEffect(() => {
+    //     recipesService.edit(id, { rating })
+
+    // }, [rating])
 
 
     const editBtnHandler = () => {
@@ -47,10 +65,28 @@ const RecipeDetails = ({
                 <hr />
                 <h3>{recipe.preparation}</h3>
 
-                <div className={style.buttonContainer}>
-                    <button className={style.editBtn} onClick={editBtnHandler}>Edit</button>
-                    <button className={style.deleteBtn} onClick={deleteBtnHandler}>Delete</button>
-                </div>
+                {isMine ?
+                    (<div className={style.buttonContainer}>
+                        <button className={style.editBtn} onClick={editBtnHandler}>Edit</button>
+                        <button className={style.deleteBtn} onClick={deleteBtnHandler}>Delete</button>
+                    </div>) :
+                    (
+                        ""
+                        // <div className={style.rating}>
+                        //     {/* <Rating
+                        //         initialRating={rating}
+                        //         onClick={rate => setRating(rate)}
+                        //     />
+                        //     <p>Rating: {rating}</p> */}
+                        //     <Rating
+                        //         fractions={2}
+                        //         stop={5}
+                        //         initialRating={rating}
+                        //         onClick={setRating}
+                        //     />
+                        //     <p>Rating: {rating}</p>
+                        // </div>
+                    )}
             </div>
         </section >
     );

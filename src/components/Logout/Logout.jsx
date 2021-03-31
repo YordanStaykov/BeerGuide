@@ -9,12 +9,17 @@ const Logout = ({
     const [user, setUser] = useContext(UserContext)
 
     useEffect(() => {
+        if (!user) {
+            return history.push('/')
+        }
+
         auth.signOut()
             .then(() => {
                 sessionStorage.removeItem('user');
                 setUser(null)
+                return history.push('/')
             })
-        history.push('/')
+
     }, [])
 
     return (

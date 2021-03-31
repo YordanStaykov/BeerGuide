@@ -1,6 +1,8 @@
 import style from './RecipeEdit.module.scss'
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
+
+import { UserContext } from '../../../contexts/UserContext'
 
 import * as recipesService from '../../../services/recipes';
 
@@ -9,12 +11,19 @@ const RecipeEdit = ({
     history
 }) => {
     const [recipe, setRecipe] = useState({})
+    const [user] = useContext(UserContext);
+    console.log(user);
 
     let { id } = match.params;
 
     useEffect(() => {
         recipesService.getOne(id)
-            .then(recipe => setRecipe(recipe));
+            .then(recipe => {
+                if (user.uid !== recipe.creator) {
+                    return history.push('/')
+                }
+                setRecipe(recipe)
+            });
     }, [])
 
 

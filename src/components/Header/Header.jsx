@@ -25,7 +25,7 @@ const Header = () => {
                                 <Link to="/recipes/add">Add Recipe</Link>
                             </li>
                             <li>
-                                <Link to="/my-recipes">My Recipes</Link>
+                                <Link to="/recipes/mine">My Recipes</Link>
                             </li>
                             <li>
                                 <Link to="/auth/logout">Logout</Link>

@@ -10,8 +10,9 @@ import Recipes from './Recipes/Recipes'
 import RecipeAddForm from './Recipes/RecipeAddForm/RecipeAddForm'
 import RecipeDetails from './Recipes/RecipeDetails/RecipeDetails'
 import RecipeEdit from './Recipes/RecipeEdit/RecipeEdit'
+import MyRecipes from './Recipes/MyRecipes/MyRecipes'
 import Logout from './Logout/Logout'
-
+import ErrorPage from '../components/ErrorPage/ErrorPage'
 
 const App = () => {
   return (
@@ -26,8 +27,10 @@ const App = () => {
             <Route path="/auth/logout" component={Logout} />
             <Route path="/recipes" exact component={Recipes} />
             <Route path="/recipes/add" component={RecipeAddForm} />
-            <Route path="/recipes/:id/details" component={RecipeDetails} />
+            <Route path="/recipes/:id/details" exact component={RecipeDetails} />
             <Route path="/recipes/:id/edit" component={RecipeEdit} />
+            <Route path="/recipes/mine" component={MyRecipes} />
+            <Route path="*" component={ErrorPage} />
           </Switch>
         </div>
         <Footer />
