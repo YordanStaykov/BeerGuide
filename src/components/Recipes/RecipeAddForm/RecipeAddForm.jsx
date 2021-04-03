@@ -19,7 +19,7 @@ const RecipeAddForm = ({ history }) => {
         }
     }, [])
 
-    function submitHandler(e) {
+    function onRecipeAddFormSubmitHandler(e) {
         e.preventDefault();
 
         const name = e.target.name.value;
@@ -43,7 +43,7 @@ const RecipeAddForm = ({ history }) => {
 
     return (
         <>
-            < form onSubmit={submitHandler} >
+            < form onSubmit={onRecipeAddFormSubmitHandler} >
 
                 <div className={style.container}>
                     <span className={style.errorBox}>
