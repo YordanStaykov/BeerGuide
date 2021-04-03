@@ -6,11 +6,14 @@ import { UserContext } from '../../../contexts/UserContext'
 
 import * as recipesService from '../../../services/recipes';
 
+import { validateRecipe } from '../../../helpers';
+
 const RecipeEdit = ({
     match,
     history
 }) => {
     const [recipe, setRecipe] = useState({})
+    const [error, setError] = useState('');
     const [user] = useContext(UserContext);
 
     let { id } = match.params;
@@ -39,27 +42,22 @@ const RecipeEdit = ({
         const yeast = e.target.yeast.value;
         const preparation = e.target.preparation.value;
 
-        const recipe = {
-            name,
-            style,
-            imageURL,
-            boilTime,
-            malt,
-            hops,
-            yeast,
-            preparation,
+        const recipe = { name, style, imageURL, boilTime, malt, hops, yeast, preparation, };
+
+        if (validateRecipe(recipe, setError)) {
+            recipesService.edit(id, recipe)
+                .then(() => history.push('/recipes'))
+                .catch(err => console.log(err))
         }
 
-        recipesService.edit(id, recipe)
-            .then(() => history.push('/recipes'))
-            .catch(err => console.log(err))
     }
 
-
-    //TODO Validations!!!!!
     return (
         < form onSubmit={submitHandler} >
             <div className={style.container}>
+                <span className={style.errorBox}>
+                    {error ? error : ''}
+                </span>
                 <h1>Edit the recipe</h1>
                 <hr />
 

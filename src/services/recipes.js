@@ -1,4 +1,4 @@
-import { get, post, del, patch } from '../data';
+import { get, post, del, patch } from '../helpers';
 import config from '../config/config'
 
 export async function getAll() {

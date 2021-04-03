@@ -2,12 +2,16 @@ import style from './RecipeAddForm.module.scss'
 
 import * as recipesService from '../../../services/recipes'
 
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 
 import { UserContext } from '../../../contexts/UserContext'
 
+import { validateRecipe } from '../../../helpers';
+
 const RecipeAddForm = ({ history }) => {
     const [user] = useContext(UserContext);
+    const [error, setError] = useState('');
+
 
     useEffect(() => {
         if (!user) {
@@ -28,32 +32,23 @@ const RecipeAddForm = ({ history }) => {
         const preparation = e.target.preparation.value;
         const creator = user.uid;
 
-        const recipe = {
-            name,
-            style,
-            imageURL,
-            boilTime,
-            malt,
-            hops,
-            yeast,
-            preparation,
-            creator,
-        }
+        const recipe = { name, style, imageURL, boilTime, malt, hops, yeast, preparation, creator, };
 
-        recipesService.create(recipe)
-            .then(() => history.push('/recipes'))
-            .catch(err => console.log(err))
+        if (validateRecipe(recipe, setError)) {
+            recipesService.create(recipe)
+                .then(() => history.push('/recipes'))
+                .catch(err => console.log(err))
+        }
     }
 
-
-    //TODO Validations!!!!!
     return (
         <>
-            {/* <span className={style.errorBox}>
-                {error ? error : ''}
-            </span> */}
             < form onSubmit={submitHandler} >
+
                 <div className={style.container}>
+                    <span className={style.errorBox}>
+                        {error ? error : ''}
+                    </span>
                     <h1>Add a recipe</h1>
                     <hr />
 
