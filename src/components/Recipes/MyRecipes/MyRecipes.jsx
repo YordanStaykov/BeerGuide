@@ -18,6 +18,7 @@ const MyRecipes = (props) => {
                 recipes = recipes.filter(recipe => recipe.creator === user.uid);
                 setRecipes(recipes);
             })
+            .catch(err => console.log(err))
     }, []);
 
 

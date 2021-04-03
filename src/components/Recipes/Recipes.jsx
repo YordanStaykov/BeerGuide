@@ -12,6 +12,7 @@ const Recipes = () => {
     useEffect(() => {
         recipesService.getAll()
             .then(recipes => setRecipes(recipes))
+            .catch(err => console.log(err))
     }, []);
 
     return (

@@ -12,7 +12,6 @@ const RecipeEdit = ({
 }) => {
     const [recipe, setRecipe] = useState({})
     const [user] = useContext(UserContext);
-    console.log(user);
 
     let { id } = match.params;
 
@@ -23,7 +22,8 @@ const RecipeEdit = ({
                     return history.push('/')
                 }
                 setRecipe(recipe)
-            });
+            })
+            .catch(err => console.log(err))
     }, [])
 
 
@@ -52,6 +52,7 @@ const RecipeEdit = ({
 
         recipesService.edit(id, recipe)
             .then(() => history.push('/recipes'))
+            .catch(err => console.log(err))
     }
 
 

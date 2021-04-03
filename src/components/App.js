@@ -1,4 +1,4 @@
-import { Route, Switch } from 'react-router-dom';
+import { Redirect, Route, Switch } from 'react-router-dom';
 import { useEffect, useContext } from 'react';
 
 import { UserContext } from '../contexts/UserContext'
@@ -15,7 +15,6 @@ import RecipeAddForm from './Recipes/RecipeAddForm/RecipeAddForm'
 import RecipeDetails from './Recipes/RecipeDetails/RecipeDetails'
 import RecipeEdit from './Recipes/RecipeEdit/RecipeEdit'
 import MyRecipes from './Recipes/MyRecipes/MyRecipes'
-import Logout from './Logout/Logout'
 import ErrorPage from '../components/ErrorPage/ErrorPage'
 
 const App = () => {
@@ -24,11 +23,9 @@ const App = () => {
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
       if (user) {
-        console.log(true);
         let { email, uid } = user;
         setUser({ email, uid });
       } else {
-        console.log(false);
         setUser(null)
       }
     })
@@ -42,7 +39,10 @@ const App = () => {
           <Route path="/" exact component={Main} />
           <Route path="/auth/login" component={Login} />
           <Route path="/auth/register" component={Register} />
-          <Route path="/auth/logout" component={Logout} />
+          <Route path="/auth/logout" render={() => {
+            auth.signOut();
+            return <Redirect to='/' />
+          }} />
           <Route path="/recipes" exact component={Recipes} />
           <Route path="/recipes/add" component={RecipeAddForm} />
           <Route path="/recipes/:id/details" exact component={RecipeDetails} />

@@ -11,7 +11,6 @@ const RecipeAddForm = ({ history }) => {
 
     useEffect(() => {
         if (!user) {
-            console.log('!user');
             return history.push('/')
         }
     }, [])
@@ -43,6 +42,7 @@ const RecipeAddForm = ({ history }) => {
 
         recipesService.create(recipe)
             .then(() => history.push('/recipes'))
+            .catch(err => console.log(err))
     }
 
 

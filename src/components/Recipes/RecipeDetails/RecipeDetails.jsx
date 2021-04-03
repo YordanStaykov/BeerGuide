@@ -28,7 +28,8 @@ const RecipeDetails = ({
                 if (user && recipe.creator === user.uid) {
                     setIsMine(true)
                 }
-            });
+            })
+            .catch(err => console.log(err))
     }, [])
 
     // useEffect(() => {
