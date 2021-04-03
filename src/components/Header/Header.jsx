@@ -13,7 +13,9 @@ const Header = () => {
         <header className={style.header}>
             <div>
                 <Link to="/"><img src="/images/beer-mug.svg" alt="Beer club logo" /></Link>
-                {user ? (<span className={style.userSpan}>Hello {user.email}</span>) : null}
+                {user
+                    ? <span className={style.userSpan}>Hello {user.email}</span>
+                    : <span className={style.userSpan}>Hello, Guest!</span>}
             </div>
             <ul >
                 {user ?
