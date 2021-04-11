@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 
+import { Link } from 'react-router-dom'
+
 import style from './RecipeDetails.module.scss';
 
 import * as recipesService from "../../../services/recipes";
@@ -48,6 +50,11 @@ const RecipeDetails = ({
             .then(() => history.push('/recipes'))
     };
 
+    const onBackButtonClickHander = (e) => {
+        e.preventDefault();
+        history.push('/recipes')
+    }
+
     return (
         <section >
             <div className={style.recipeArea}>
@@ -88,6 +95,8 @@ const RecipeDetails = ({
                         //     <p>Rating: {rating}</p>
                         // </div>
                     )}
+                {/* <Link to="/recipes">Back</Link> */}
+                <button className={style.backBtn} onClick={onBackButtonClickHander}>Back</button>
             </div>
         </section >
     );
