@@ -34,7 +34,6 @@ const Recipes = () => {
 				) : (
 					<h1>
 						No recipes to show at the moment. Feel free to add one
-						:)
 					</h1>
 				)}
 			</div>
