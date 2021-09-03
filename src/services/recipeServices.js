@@ -1,5 +1,4 @@
 import { get, post, del, patch } from "../helpers";
-// import config from '../config/config'
 
 export async function getAll() {
 	let data = await get(process.env.REACT_APP_URL + "recipes.json");

@@ -4,11 +4,11 @@ import { useState, useEffect, useContext } from "react";
 
 import { UserContext } from "../../../contexts/UserContext";
 
-import * as recipesService from "../../../services/recipes";
+import * as recipesService from "../../../services/recipeServices";
 
 import RecipeCard from "../RecipeCard/RecipeCard";
 
-const MyRecipes = (props) => {
+export default function MyRecipes(props) {
 	const [recipes, setRecipes] = useState([]);
 	const [user] = useContext(UserContext);
 
@@ -22,7 +22,7 @@ const MyRecipes = (props) => {
 				setRecipes(recipes);
 			})
 			.catch((err) => console.log(err));
-	}, []);
+	}, [user.uid]);
 
 	return (
 		<section>
@@ -41,6 +41,4 @@ const MyRecipes = (props) => {
 			</div>
 		</section>
 	);
-};
-
-export default MyRecipes;
+}

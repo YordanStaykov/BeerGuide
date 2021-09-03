@@ -2,7 +2,7 @@ import style from "./Recipes.module.scss";
 
 import { useState, useEffect } from "react";
 
-import * as recipesService from "../../services/recipes";
+import * as recipesService from "../../services/recipeServices";
 
 import RecipeCard from "./RecipeCard/RecipeCard";
 
